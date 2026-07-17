@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap for search engines
+Sitemap: https://ai-prompts-playbook.dasbubai929.workers.dev/sitemap.xml
+
+# EU Privacy Compliance
+Disallow: /admin/
+Disallow: /api/
