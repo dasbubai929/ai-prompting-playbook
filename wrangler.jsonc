@@ -2,7 +2,7 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"compatibility_date": "2026-07-17",
 	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "ai-prompts-playbook-webapp",
+	"name": "ai-prompts-playbook",
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"assets": {
 		"directory": "./dist",
