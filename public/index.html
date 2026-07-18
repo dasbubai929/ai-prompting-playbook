@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Prompts Playbook</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        margin: 0;
+        padding: 40px;
+        line-height: 1.6;
+        background: #f9f9f9;
+        color: #333;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+      }
+      .prompts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .prompt-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+      }
+      .prompt-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      }
+      .prompt-title {
+        font-size:1.25rem;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+      }
+      .prompt-desc {
+        color: #666;
+        margin-bottom:1.5rem;
+      }
+      .tag {
+        display: inline-block;
+        background: #e0f2fe;
+        color: #0369a1;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size:0.875rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      nav {
+        background: white;
+        padding: 1rem 0;
+        margin-bottom: 2rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      .nav-link {
+        color: #0369a1;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        border-bottom: 2px solid transparent;
+        transition: border-color 0.2s;
+      }
+      .nav-link:hover {
+        border-bottom-color: #0369a1;
+      }
+      @media (max-width: 768px) {
+        .prompts-grid {
+          grid-template-columns: 1fr;
+        }
+        body {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/hr.html" class="nav-link">HR & Recruiting</a>
+        <a href="/marketing.html" class="nav-link">Digital Marketing</a>
+        <a href="/creators.html" class="nav-link">Course Creators</a>
+        <a href="/seo.html" class="nav-link">SEO & Content</a>
+        <a href="/dev.html" class="nav-link">SaaS & Dev</a>
+      </div>
+    </nav>
+    
+    <div class="container">
+      <h1>AI Prompts Playbook</h1>
+      <p class="subtitle">Enterprise-ready infrastructure for AI prompting and automation</p>
+      
+      <div class="prompts-grid">
+        <div class="prompt-card">
+          <h3 class="prompt-title">Legally Compliant Job Description Builder</h3>
+          <span class="tag">HR & Recruiting</span>
+          <span class="tag">Compliance</span>
+          <span class="tag">GPT-4o</span>
+          <p class="prompt-desc">Develops structured, inclusive, and legally protective job postings matching local compliance constraints.</p>
+          <a href="/hr-prompt.html">View Details →</a>
+        </div>
+        
+        <div class="prompt-card">
+          <h3 class="prompt-title">Dynamic Meta-Prompt Instruction Builder</h3>
+          <span class="tag">SaaS & Dev</span>
+          <span class="tag">Prompt Chaining</span>
+          <span class="tag">Claude 3.5 Sonnet</span>
+          <p class="prompt-desc">Translates brief product goals into complete, highly descriptive system instructions for autonomous LLM agents.</p>
+          <a href="/dev-prompt.html">View Details →</a>
+        </div>
+        
+        <div class="prompt-card">
+          <h3 class="prompt-title">Structured Article Outline & Intent Matcher</h3>
+          <span class="tag">SEO & Content</span>
+          <span class="tag">Search Intent</span>
+          <span class="tag">GPT-4o</span>
+          <p class="prompt-desc">Extracts target search intents and models comprehensive semantically-rich outlines for ranking optimized content.</p>
+          <a href="/seo-prompt.html">View Details →</a>
+        </div>
+        
+        <div class="prompt-card">
+          <h3 class="prompt-title">Interactive Dynamic Syllabus Planner</h3>
+          <span class="tag">Course Creators</span>
+          <span class="tag">Pedagogy</span>
+          <span class="tag">Claude 3.5 Sonnet</span>
+          <p class="prompt-desc">Crafts multi-stage curricula with structured learning objectives and practical retention-testing modules.</p>
+          <a href="/creators-prompt.html">View Details →</a>
+        </div>
+        
+        <div class="prompt-card">
+          <h3 class="prompt-title">PAS Copywriting Conversion Architect</h3>
+          <span class="tag">Digital Marketing</span>
+          <span class="tag">Copywriting</span>
+          <span class="tag">GPT-4o</span>
+          <p class="prompt-desc">Applies structured problem-agitate-solve templates to output highly targeted and high-conversion ad copy.</p>
+          <a href="/marketing-prompt.html">View Details →</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
