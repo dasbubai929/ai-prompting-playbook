@@ -1,19 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { SITE_URL } from '../consts';
 
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
   name: 'Contact AI Prompting Playbook',
   description: 'Get in touch with the AI Prompting Playbook team.',
-  url: 'https://ai-prompting-playbook.pages.dev/contact',
+  url: `${SITE_URL}/contact`,
 });
 ---
 
 <Layout
   title="Contact"
   description="Get in touch with the AI Prompting Playbook team. Share suggestions, report issues, or request new prompts."
-  canonical="https://ai-prompting-playbook.pages.dev/contact"
+  canonical={`${SITE_URL}/contact`}
   schema={schema}
 >
   <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8 sm:py-24">

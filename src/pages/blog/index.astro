@@ -3,20 +3,21 @@ import Layout from '../../layouts/Layout.astro';
 import { blogPosts } from '../../data/blog';
 import BlogCard from '../../components/BlogCard.astro';
 import Sidebar from '../../components/Sidebar.astro';
+import { SITE_URL } from '../../consts';
 
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Blog',
   name: 'AI Prompting Playbook Blog',
   description: 'Prompt engineering insights, tutorials, and best practices.',
-  url: 'https://ai-prompting-playbook.pages.dev/blog',
+  url: `${SITE_URL}/blog`,
 });
 ---
 
 <Layout
   title="Blog"
   description="Prompt engineering insights, tutorials, and best practices for AI prompt crafting."
-  canonical="https://ai-prompting-playbook.pages.dev/blog"
+  canonical={`${SITE_URL}/blog`}
   schema={schema}
 >
   <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

@@ -6,16 +6,17 @@ import FeaturedPrompts from '../components/FeaturedPrompts.astro';
 import { categories } from '../data/categories';
 import { blogPosts } from '../data/blog';
 import BlogCard from '../components/BlogCard.astro';
+import { SITE_URL } from '../consts';
 
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'AI Prompting Playbook',
   description: 'Enterprise-grade AI prompts across every niche. Search, copy, and deploy with confidence.',
-  url: 'https://ai-prompting-playbook.pages.dev',
+  url: SITE_URL,
   potentialAction: {
     '@type': 'SearchAction',
-    target: 'https://ai-prompting-playbook.pages.dev/search?q={search_term_string}',
+    target: `${SITE_URL}/search?q={search_term_string}`,
     'query-input': 'required name=search_term_string',
   },
 });

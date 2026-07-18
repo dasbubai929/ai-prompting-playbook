@@ -4,6 +4,7 @@ import CategoryTabs from '../../components/CategoryTabs.astro';
 import PromptGrid from '../../components/PromptGrid.astro';
 import { categories } from '../../data/categories';
 import { prompts } from '../../data/prompts';
+import { SITE_URL } from '../../consts';
 
 export async function getStaticPaths() {
   return categories.map((cat) => ({
@@ -20,14 +21,14 @@ const schema = JSON.stringify({
   '@type': 'CollectionPage',
   name: `AI Prompts for ${category.name}`,
   description: category.description,
-  url: `https://ai-prompting-playbook.pages.dev/category/${category.slug}`,
+  url: `${SITE_URL}/category/${category.slug}`,
 });
 ---
 
 <Layout
   title={`AI Prompts for ${category.name}`}
   description={category.description}
-  canonical={`https://ai-prompting-playbook.pages.dev/category/${category.slug}`}
+  canonical={`${SITE_URL}/category/${category.slug}`}
   schema={schema}
 >
   <section class="relative overflow-hidden py-20 sm:py-24">

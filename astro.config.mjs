@@ -4,5 +4,5 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   integrations: [tailwind()],
   output: 'static',
-  site: 'https://ai-prompting-playbook.pages.dev',
+  site: 'https://aiplaybook.dasbubai929.workers.dev',
 });

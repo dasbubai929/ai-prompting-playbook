@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { blogPosts } from '../../data/blog';
 import Sidebar from '../../components/Sidebar.astro';
 import { marked } from 'marked';
+import { SITE_URL } from '../../consts';
 
 export async function getStaticPaths() {
   return blogPosts.map((post) => ({
@@ -21,14 +22,14 @@ const schema = JSON.stringify({
   description: post.excerpt,
   datePublished: post.date,
   author: { '@type': 'Organization', name: post.author },
-  url: `https://ai-prompting-playbook.pages.dev/blog/${post.slug}`,
+  url: `${SITE_URL}/blog/${post.slug}`,
 });
 ---
 
 <Layout
   title={post.title}
   description={post.excerpt}
-  canonical={`https://ai-prompting-playbook.pages.dev/blog/${post.slug}`}
+  canonical={`${SITE_URL}/blog/${post.slug}`}
   schema={schema}
   ogType="article"
 >

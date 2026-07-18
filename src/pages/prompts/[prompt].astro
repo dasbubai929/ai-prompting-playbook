@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { prompts } from '../../data/prompts';
 import { categories } from '../../data/categories';
+import { SITE_URL } from '../../consts';
 
 export async function getStaticPaths() {
   return prompts.map((p) => ({
@@ -25,14 +26,14 @@ const schema = JSON.stringify({
     '@type': 'Thing',
     name: prompt.tags.join(', '),
   },
-  url: `https://ai-prompting-playbook.pages.dev/prompts/${prompt.slug}`,
+  url: `${SITE_URL}/prompts/${prompt.slug}`,
 });
 ---
 
 <Layout
   title={prompt.title}
   description={prompt.description}
-  canonical={`https://ai-prompting-playbook.pages.dev/prompts/${prompt.slug}`}
+  canonical={`${SITE_URL}/prompts/${prompt.slug}`}
   schema={schema}
   ogType="article"
 >
