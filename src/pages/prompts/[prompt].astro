@@ -5,7 +5,7 @@ import { categories } from '../../data/categories';
 
 export async function getStaticPaths() {
   return prompts.map((p) => ({
-    params: { slug: p.slug },
+    params: { prompt: p.slug },
     props: { prompt: p },
   }));
 }

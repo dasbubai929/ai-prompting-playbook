@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
   darkMode: 'class',
   theme: {
@@ -47,12 +47,12 @@ export default {
         pill: '100px',
       },
       spacing: {
-        'section': '192px',
+        section: '192px',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
         'slide-up': 'slideUp 0.5s ease-out',
-        'gradient': 'gradient 8s ease infinite',
+        gradient: 'gradient 8s ease infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
