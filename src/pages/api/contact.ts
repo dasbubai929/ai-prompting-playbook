@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { env } from "cloudflare:workers";
 
 export const prerender = false;
 
@@ -40,7 +41,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
     };
 
     // Store the submission in the CONTACT_FORM KV namespace
-    const env = locals.runtime.env as any;
     if (env.CONTACT_FORM) {
       await env.CONTACT_FORM.put(`submission:${id}`, JSON.stringify(submission));
     } else {

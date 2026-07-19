@@ -3,8 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 
 export const prerender = false;
 
-// We use `Astro.locals.runtime.env` for Cloudflare environment variables and bindings
-const env = Astro.locals.runtime?.env as any;
+import { env } from "cloudflare:workers";
+
+// We use `env` from cloudflare:workers for environment variables and bindings
 const adminPass = env?.ADMIN_PASS || 'default-secret-change-me';
 
 let isAuthenticated = false;
