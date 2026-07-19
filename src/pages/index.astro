@@ -60,7 +60,7 @@ const schema = JSON.stringify({
       {categories.map((cat) => (
         <a
           href={`/category/${cat.slug}`}
-          class="group rounded-lg border border-white/5 bg-white/[0.03] p-6 text-center transition-all duration-300 card-hover"
+          class="group rounded-lg border border-white/5 bg-white/3 p-6 text-center transition-all duration-300 card-hover"
         >
           <span class="text-3xl" aria-hidden="true">{cat.icon}</span>
           <h3 class="mt-3 text-sm font-semibold text-canvas group-hover:text-link transition-colors">{cat.name}</h3>

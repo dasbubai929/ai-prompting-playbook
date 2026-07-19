@@ -71,7 +71,7 @@ const schema = JSON.stringify({
         </div>
       </div>
 
-      <div class="relative rounded-lg border border-white/5 bg-white/[0.03] p-6 sm:p-8">
+      <div class="relative rounded-lg border border-white/5 bg-white/3 p-6 sm:p-8">
         <div class="absolute right-4 top-4">
           <button
             id="copy-full-prompt"
@@ -95,7 +95,7 @@ const schema = JSON.stringify({
           {related.map((rp) => (
             <a
               href={`/prompts/${rp.slug}`}
-              class="group rounded-lg border border-white/5 bg-white/[0.03] p-5 transition-all duration-300 card-hover"
+              class="group rounded-lg border border-white/5 bg-white/3 p-5 transition-all duration-300 card-hover"
             >
               <h3 class="text-sm font-semibold text-canvas group-hover:text-link transition-colors">{rp.title}</h3>
               <p class="mt-1.5 text-xs text-body line-clamp-2">{rp.description}</p>

@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@config "../../tailwind.config.cjs";
 
 @layer base {
   html {
@@ -20,7 +22,7 @@
 
 @layer components {
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-gradient-develop-start via-gradient-preview-end to-gradient-ship-end bg-[length:200%_200%] animate-gradient;
+    @apply bg-clip-text text-transparent bg-linear-to-r from-gradient-develop-start via-gradient-preview-end to-gradient-ship-end bg-size-[200%_200%] animate-gradient;
   }
   .mesh-gradient {
     background: linear-gradient(135deg, #007cf0 0%, #7928ca 25%, #ff0080 50%, #ff4d4d 75%, #f9cb28 100%);

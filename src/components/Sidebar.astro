@@ -5,7 +5,7 @@ const trending = prompts.filter((p) => p.trending).slice(0, 4);
 ---
 
 <aside class="space-y-8">
-  <div class="rounded-lg border border-white/5 bg-white/[0.03] p-5">
+  <div class="rounded-lg border border-white/5 bg-white/3 p-5">
     <h3 class="mb-4 text-xs font-medium uppercase tracking-wider text-mute font-mono">Categories</h3>
     <nav class="space-y-1.5" aria-label="Blog categories">
       {categories.map((cat) => (
@@ -20,7 +20,7 @@ const trending = prompts.filter((p) => p.trending).slice(0, 4);
     </nav>
   </div>
 
-  <div class="rounded-lg border border-white/5 bg-white/[0.03] p-5">
+  <div class="rounded-lg border border-white/5 bg-white/3 p-5">
     <h3 class="mb-4 text-xs font-medium uppercase tracking-wider text-mute font-mono">Featured Prompts</h3>
     <nav class="space-y-2" aria-label="Featured prompts">
       {trending.map((p) => (

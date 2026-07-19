@@ -14,7 +14,7 @@
 - `@theme` is for design tokens that should create utilities or variants; use `:root` only for plain CSS variables that should not generate Tailwind APIs.
 - `@theme` variables must be top-level, not nested under selectors or media queries.
 - Stacked variants apply left-to-right (reverse order from v3).
-- Arbitrary CSS variable syntax is `bg-(--brand-color)` (not `bg-[--brand-color]`).
+- Arbitrary CSS variable syntax is `bg-(--brand-color)` (not `bg-(--brand-color)`).
 - Transform reset uses `scale-none`, `rotate-none`, `translate-none` (not `transform-none`).
 - `hover:` now only applies on devices that support hover; override if needed.
 - Tailwind scans source files as plain text, so dynamically concatenated class fragments are not detected.
