@@ -4,12 +4,15 @@
   "version": "1.0.0",
   "description": "Enterprise-Grade AI Prompting Playbook",
   "scripts": {
-    "dev": "astro dev",
-    "prebuild": "tsx scripts/validate-content.ts",
+    "dev": "astro dev --port 4321",
     "build": "astro build",
-    "preview": "npm run build && wrangler dev",
+    "preview": "npm run build && wrangler dev --port 8788",
     "deploy": "npm run build && wrangler deploy",
-    "cf-typegen": "wrangler types"
+    "check": "astro check",
+    "cf-typegen": "wrangler types",
+    "lint": "eslint . --ext .js,.ts,.astro",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.1.3",
