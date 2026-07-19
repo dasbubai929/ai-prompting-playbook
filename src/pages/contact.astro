@@ -29,12 +29,18 @@ const schema = JSON.stringify({
     </div>
 
     <form
-      action="mailto:hello@aipromptingplaybook.com"
-      method="post"
-      enctype="text/plain"
+      id="contact-form"
+      action="/api/contact"
+      method="POST"
       class="mt-12 space-y-6"
       aria-label="Contact form"
     >
+      <!-- CSRF Honeypot -->
+      <div class="hidden" aria-hidden="true">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div id="form-message" class="hidden rounded-lg p-4 text-sm font-medium transition-all duration-300"></div>
       <div>
         <label for="name" class="block text-sm font-medium text-canvas">
           Name
@@ -109,15 +115,53 @@ const schema = JSON.stringify({
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
     </form>
-
-    <div class="mt-12 rounded-lg border border-white/5 bg-white/3 p-6">
-      <h2 class="text-sm font-semibold text-canvas">Other Ways to Reach Us</h2>
-      <p class="mt-2 text-sm text-body">
-        You can also email us directly at{" "}
-        <a href="mailto:hello@aipromptingplaybook.com" class="text-link transition-colors hover:text-link-deep">
-          hello@aipromptingplaybook.com
-        </a>
-      </p>
-    </div>
   </div>
 </Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const msgDiv = document.getElementById('form-message') as HTMLDivElement;
+  const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+  if (form && msgDiv && submitBtn) {
+    const origBtnText = submitBtn.innerHTML;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msgDiv.classList.add('hidden');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending...';
+
+      try {
+        const formData = new FormData(form);
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+
+        const data = await res.json();
+        msgDiv.classList.remove('hidden');
+
+        if (res.ok) {
+          msgDiv.classList.add('bg-success/20', 'text-success', 'border', 'border-success/30');
+          msgDiv.classList.remove('bg-error/20', 'text-error', 'border-error/30');
+          msgDiv.textContent = "Thank you! Your message has been sent successfully.";
+          form.reset();
+        } else {
+          throw new Error(data.error || 'Failed to send message');
+        }
+      } catch (err: any) {
+        msgDiv.classList.remove('hidden');
+        msgDiv.classList.add('bg-error/20', 'text-error', 'border', 'border-error/30');
+        msgDiv.classList.remove('bg-success/20', 'text-success', 'border-success/30');
+        msgDiv.textContent = err.message || "An error occurred. Please try again.";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origBtnText;
+      }
+    });
+  }
+</script>
