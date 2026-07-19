@@ -11,7 +11,7 @@ directory = "dist"
 
 [[kv_namespaces]]
 binding = "SESSION"
-id = "your_kv_namespace_id"
+id = "76347108648c47e1bc172c4d13d7269f"
 
 [[kv_namespaces]]
 binding = "CONTACT_FORM"
