@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CategoryTabs from '../../components/CategoryTabs.astro';
+import PromptCodeCard from '../../components/PromptCodeCard.astro';
+import { promptCodeSections, allPromptCodes } from '../../data/prompt-codes';
+import { SITE_URL } from '../../consts';
+
+const totalCodes = allPromptCodes.length;
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Secret Prompt Codes Library',
+  description: `${totalCodes}+ prompt shortcuts organized by category to transform AI responses.`,
+  url: `${SITE_URL}/prompt-codes`,
+});
+---
+
+<Layout
+  title="Secret Prompt Codes Library"
+  description={`${totalCodes}+ prompt shortcuts organized by category to transform AI responses.`}
+  canonical={`${SITE_URL}/prompt-codes`}
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-20 sm:py-24">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 mesh-gradient opacity-[0.06] blur-3xl"></div>
+    <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <span class="text-4xl" aria-hidden="true">🔑</span>
+      <h1 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+        <span class="gradient-text">Secret Prompt Codes Library</span>
+      </h1>
+      <p class="mt-3 text-base text-body">{totalCodes}+ prompt shortcuts organized by category to transform AI responses.</p>
+    </div>
+  </section>
+
+  <CategoryTabs activeCategory="prompt-codes" />
+
+  <!-- Section Jump Navigation -->
+  <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <nav class="flex flex-wrap items-center justify-center gap-2" aria-label="Jump to section">
+      {promptCodeSections.map((section) => (
+        <a
+          href={`#${section.id}`}
+          class="inline-flex items-center gap-1.5 rounded-pill-sm border border-white/10 bg-white/3 px-3 py-1.5 text-xs font-medium text-body transition-all duration-200 hover:border-link/30 hover:text-link hover:bg-link/5"
+        >
+          <span aria-hidden="true">{section.icon}</span>
+          {section.name}
+          <span class="ml-0.5 text-[10px] text-mute">({section.codes.length})</span>
+        </a>
+      ))}
+    </nav>
+  </section>
+
+  <!-- Prompt Code Sections -->
+  <section class="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="mb-6 flex items-center justify-between">
+      <p class="text-sm text-mute">
+        {totalCodes} prompt code{totalCodes !== 1 ? 's' : ''} available
+      </p>
+    </div>
+
+    {promptCodeSections.map((section) => (
+      <div id={section.id} class="mb-16 scroll-mt-24">
+        <div class="mb-6 flex items-center gap-3">
+          <span class="text-2xl" aria-hidden="true">{section.icon}</span>
+          <div>
+            <h2 class="text-xl font-semibold text-canvas">{section.name}</h2>
+            <p class="text-xs text-mute">{section.codes.length} codes</p>
+          </div>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {section.codes.map((code) => (
+            <PromptCodeCard code={code} />
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+</Layout>
