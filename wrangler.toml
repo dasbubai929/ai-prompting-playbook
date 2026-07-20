@@ -16,3 +16,6 @@ id = "803d4c3729a64150a0f6b1f1fcd098e9"
 [[kv_namespaces]]
 binding = "CONTACT_FORM"
 id = "76347108648c47e1bc172c4d13d7269f"
+
+[vars]
+ADMIN_PASS = "your_secure_password"
