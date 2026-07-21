@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PromptCard from '../components/PromptCard.astro';
+import PromptCodeCard from '../components/PromptCodeCard.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { prompts } from '../data/prompts';
+import { allPromptCodes } from '../data/prompt-codes';
+import { blogPosts } from '../data/blog';
+import { categories } from '../data/categories';
+
+const initialQuery = Astro.url.searchParams.get('q') || '';
+const trimmedQuery = initialQuery.trim().toLowerCase();
+
+const matchedPrompts = trimmedQuery
+  ? prompts.filter((p) =>
+      p.title.toLowerCase().includes(trimmedQuery) ||
+      p.description.toLowerCase().includes(trimmedQuery) ||
+      p.tags.some((t) => t.toLowerCase().includes(trimmedQuery))
+    )
+  : prompts;
+
+const matchedCodes = trimmedQuery
+  ? allPromptCodes.filter((c) =>
+      c.title.toLowerCase().includes(trimmedQuery) ||
+      c.description.toLowerCase().includes(trimmedQuery) ||
+      c.exampleUsage.toLowerCase().includes(trimmedQuery) ||
+      c.tags.some((t) => t.toLowerCase().includes(trimmedQuery))
+    )
+  : allPromptCodes;
+
+const matchedBlog = trimmedQuery
+  ? blogPosts.filter((b) =>
+      b.title.toLowerCase().includes(trimmedQuery) ||
+      b.description.toLowerCase().includes(trimmedQuery) ||
+      b.tags.some((t) => t.toLowerCase().includes(trimmedQuery))
+    )
+  : blogPosts;
+
+const totalResults = matchedPrompts.length + matchedCodes.length + matchedBlog.length;
+---
+
+<Layout
+  title={initialQuery ? `Search results for "${initialQuery}"` : 'Search Prompts & Articles'}
+  description="Search enterprise-grade AI prompts, prompt codes, and tutorials across niches."
+>
+  <section class="relative overflow-hidden py-16 sm:py-24">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 mesh-gradient opacity-[0.08] blur-3xl"></div>
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+        <span class="gradient-text">Search Prompts & Articles</span>
+      </h1>
+      <p class="mt-3 text-sm sm:text-base text-body">
+        {initialQuery
+          ? `Found ${totalResults} result${totalResults === 1 ? '' : 's'} for "${initialQuery}"`
+          : 'Search enterprise-grade AI prompts, prompt codes, and strategy articles'}
+      </p>
+
+      <div class="mx-auto mt-8 max-w-2xl">
+        <form action="/search" method="GET" role="search" class="relative">
+          <svg class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-mute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input
+            type="search"
+            name="q"
+            value={initialQuery}
+            placeholder="Search prompts by niche, task, or keyword..."
+            class="w-full rounded-full border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-sm text-canvas placeholder:text-mute transition-all duration-300 focus:border-link/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-link/20"
+            aria-label="Search prompts"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+    {totalResults === 0 ? (
+      <div class="rounded-xl border border-white/10 bg-white/3 p-12 text-center">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-mute mb-4">
+          <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h2 class="text-xl font-semibold text-canvas">No results found matching "{initialQuery}"</h2>
+        <p class="mt-2 text-sm text-body max-w-md mx-auto">Try checking for spelling errors or searching for broader terms like "HR", "SEO", "marketing", or "summarize".</p>
+        
+        <div class="mt-8">
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-mute">Explore Categories</h3>
+          <div class="mt-4 flex flex-wrap justify-center gap-2">
+            {categories.map((cat) => (
+              <a
+                href={`/category/${cat.slug}`}
+                class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-body transition-colors hover:border-link/50 hover:text-canvas"
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div class="space-y-16">
+        {matchedPrompts.length > 0 && (
+          <section>
+            <div class="mb-6 flex items-center justify-between border-b border-white/5 pb-4">
+              <h2 class="text-xl font-semibold text-canvas flex items-center gap-2">
+                <span class="inline-block rounded-md bg-violet/20 px-2 py-0.5 text-xs font-mono text-violet-soft">
+                  {matchedPrompts.length}
+                </span>
+                Prompts
+              </h2>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {matchedPrompts.map((prompt) => (
+                <PromptCard prompt={prompt} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {matchedCodes.length > 0 && (
+          <section>
+            <div class="mb-6 flex items-center justify-between border-b border-white/5 pb-4">
+              <h2 class="text-xl font-semibold text-canvas flex items-center gap-2">
+                <span class="inline-block rounded-md bg-link/20 px-2 py-0.5 text-xs font-mono text-link">
+                  {matchedCodes.length}
+                </span>
+                Prompt Codes
+              </h2>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {matchedCodes.map((code) => (
+                <PromptCodeCard code={code} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {matchedBlog.length > 0 && (
+          <section>
+            <div class="mb-6 flex items-center justify-between border-b border-white/5 pb-4">
+              <h2 class="text-xl font-semibold text-canvas flex items-center gap-2">
+                <span class="inline-block rounded-md bg-white/10 px-2 py-0.5 text-xs font-mono text-body">
+                  {matchedBlog.length}
+                </span>
+                Articles & Guides
+              </h2>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {matchedBlog.map((post) => (
+                <BlogCard post={post} />
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    )}
+  </div>
+</Layout>

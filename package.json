@@ -27,6 +27,7 @@
     "node": ">=22.0.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@eslint/js": "^10.0.1",
     "autoprefixer": "^10.5.4",
     "eslint": "^10.7.0",

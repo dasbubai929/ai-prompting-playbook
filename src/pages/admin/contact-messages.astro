@@ -37,7 +37,7 @@ if (Astro.request.method === 'POST') {
       }
     } else if (action === 'clear_all') {
       const listResult = await env.CONTACT_FORM.list({ prefix: 'submission:' });
-      await Promise.all(listResult.keys.map(k => env.CONTACT_FORM.delete(k.name)));
+      await Promise.all(listResult.keys.map((k: any) => env.CONTACT_FORM.delete(k.name)));
     } else if (action === 'bulk_delete') {
       const keys = data.getAll('keys[]');
       if (keys.length > 0) {
@@ -271,9 +271,9 @@ if (isAuthenticated && env?.CONTACT_FORM) {
     exportCsvBtn.addEventListener('click', () => {
       const selected = Array.from(rowCheckboxes).filter(cb => cb.checked && (cb.closest('tr') as HTMLElement).style.display !== 'none');
       
-      let rowsToExport = [];
+      let rowsToExport: Element[] = [];
       if (selected.length > 0) {
-        rowsToExport = selected.map(cb => cb.closest('tr'));
+        rowsToExport = selected.map(cb => cb.closest('tr')).filter((tr): tr is HTMLTableRowElement => tr !== null);
       } else {
         rowsToExport = Array.from(document.querySelectorAll('#messagesTable tbody tr.row-item')).filter(tr => (tr as HTMLElement).style.display !== 'none');
       }
@@ -287,6 +287,7 @@ if (isAuthenticated && env?.CONTACT_FORM) {
       csvRows.push(['Date', 'Name', 'Email', 'Message']);
 
       rowsToExport.forEach(row => {
+        if (!row) return;
         const date = (row.querySelector('.date-cell') as HTMLElement)?.innerText.trim() || '';
         const name = (row.querySelector('.name-cell') as HTMLElement)?.innerText.trim() || '';
         const email = (row.querySelector('.email-cell') as HTMLElement)?.innerText.trim() || '';
